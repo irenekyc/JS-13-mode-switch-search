@@ -2,6 +2,47 @@ const filterContainer = document.querySelector('.filter-container')
 const areaSubCat = document.getElementById('country-sub-cat')
 const subCatContainer = document.querySelectorAll('.sub-cat-div')
 let photos = []
+const photoGallery = document.querySelector('.photo-gallery-container')
+let tagHTML = ""
+let outphotoHTML
+/////////////////Switch and Search //////////////
+const switchSearch = document.querySelector('.search-mode-container')
+const darkMode = document.getElementById('switch')
+
+window.addEventListener('keydown', (e)=>{
+    const searchKeyWords = document.getElementById('searchID').value.toLowerCase()
+    if (e.keyCode == 13 && searchKeyWords.length >1 ){
+        foundImages = filterPhotos(searchKeyWords)
+        displayImages(foundImages)
+    }
+})
+switchSearch.addEventListener('click', (e)=>{
+    if(e.target.id === "searchBtn"){
+        const searchKeyWords = document.getElementById('searchID').value.toLowerCase()
+        foundImages = filterPhotos(searchKeyWords)
+        displayImages(foundImages)
+    }
+    if (darkMode.checked) {
+        document.body.style.background="#243447"
+        document.querySelector('.web-container').style.background="#c51f5d"
+        document.querySelector('.header').style.background="#c51f5d"
+    } else if (!darkMode.checked) {
+        document.body.style.background="#ffffff"
+        document.querySelector('.web-container').style.background="#FFEDEC"
+        document.querySelector('.header').style.background="#ffffff"
+    }
+
+})
+
+
+
+
+
+photos.push({
+    id: 31,
+    tag: "#berlin #europe #city",
+    src: "images/Berlin1.jpg"
+})
 photos.push({
     id: 1,
     tag: "#berlin #europe #city",
@@ -19,22 +60,22 @@ photos.push({
 })
 photos.push({
     id: 4,
-    tag: "#asia #HongKong #city",
+    tag: "#asia #hong kong #city",
     src: "images/HK1 copy.jpg"
 })
 photos.push({
     id: 5,
-    tag: "#asia #HongKong #city",
+    tag: "#asia #hong kong #city",
     src: "images/HK2.jpg"
 })
 photos.push({
     id: 6,
-    tag: "#asia #HongKong #city",
+    tag: "#asia #hong kong #city",
     src: "images/HK3.png"
 })
 photos.push({
     id: 7,
-    tag: "#asia #HongKong #city",
+    tag: "#asia #hong kong #city",
     src: "images/HK4.jpg"
 })
 photos.push({
@@ -69,12 +110,12 @@ photos.push({
 })
 photos.push({
     id: 14,
-    tag: "#europe #London #city",
+    tag: "#europe #london #city",
     src: "images/London3.jpg"
 })
 photos.push({
     id: 15,
-    tag: "#europe #London #city",
+    tag: "#europe #london #city",
     src: "images/London4.jpg"
 })
 photos.push({
@@ -84,12 +125,12 @@ photos.push({
 })
 photos.push({
     id: 17,
-    tag: "australia, Nature",
+    tag: "#australia #nature",
     src: "images/Mel2.jpg"
 })
 photos.push({
     id: 18,
-    tag: "#Australia #city",
+    tag: "#australia #city",
     src: "images/Mel3.jpg"
 })
 photos.push({
@@ -190,16 +231,14 @@ const filterPhotos = (filter)=>{
 }
 
 
-const photoGallery = document.querySelector('.photo-gallery-container')
-let tagHTML = ""
-let outphotoHTML
-
-
 const displayImages = (photos)=>{
     photoGallery.innerHTML=" "
+    if (photos.length == 0) {
+        return photoGallery.innerHTML="<h3> No photo can be found. Please try again. </h3>"
+    }
     photos.forEach((photo)=>{
     
-            outputPhotoHTML = ` <div class="photo-card">
+         outputPhotoHTML = ` <div class="photo-card">
         <div class="photo-container">
             <img class="photo" src="${photo.src}" alt="Beach" data-tag="${photo.tag}">
         </div> 

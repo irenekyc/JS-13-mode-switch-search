@@ -7,9 +7,25 @@
     <title>JS-13-Mode switch and search</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a1e74affc8.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="web-container">
+        <div class="search-mode-container">
+            <div class="mode-switch flex-25">
+                <span> Dark Mode</span>
+                <input type="checkbox" name="switch" id="switch">
+                <label for="switch">Toggle</label>
+            </div>
+            <div class="search-container flex-25">
+                <div class="search-btn">
+                <input type="text" name="search" id="searchID" placeholder="search">
+                <i class="fas fa-search" id="searchBtn"></i>
+                </div>
+            </div>
+
+        </div>
         <div class="header">
             <h1> Photo Gallery - Travel</h1>
         </div>
